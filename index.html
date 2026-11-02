@@ -1,169 +1,626 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Naimish -- 13-Year-Old Web Developer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Naimish — 13-Year-Old Web Developer</title>
   <meta name="description" content="Portfolio of Naimish, a 13-year-old web developer crafting full-stack apps and 3D web experiences natively on mobile using Acode, GitHub, and Vercel." />
+  <meta name="theme-color" content="#0C0C0C" />
 
-  <!-- Google Fonts: Kanit (Weights 300 to 900) -->
+  <!-- Google Fonts: Kanit & JetBrains Mono (Nothing OS style accent) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
-
-  <!-- Tailwind CSS via CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            kanit: ['Kanit', 'sans-serif'],
-          },
-          colors: {
-            brandDark: '#0C0C0C',
-            brandSlate: '#D7E2EA',
-          }
-        }
-      }
-    };
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Kanit:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
 
   <style>
+    /* =====================================================================
+       1. CORE RESET & VARIABLES (100% Offline/Acode Proof — No CDN Needed)
+       ===================================================================== */
+    :root {
+      --bg-dark: #0C0C0C;
+      --slate: #D7E2EA;
+      --silver: #BBCCD7;
+      --purple: #B600A8;
+      --nothing-red: #D71921;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    html, body {
-      background-color: #0C0C0C;
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-dark);
+      color: var(--slate);
       font-family: 'Kanit', sans-serif;
-      color: #D7E2EA;
       overflow-x: hidden;
       width: 100%;
     }
 
-    /* Subtle Silver-to-Gray Hero Heading Gradient */
+    body {
+      background-color: var(--bg-dark);
+      color: var(--slate);
+      overflow-x: hidden;
+      width: 100%;
+      user-select: none;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    svg {
+      display: inline-block;
+      vertical-align: middle;
+      flex-shrink: 0;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0C0C0C; }
+    ::-webkit-scrollbar-thumb { background: #2b2b2b; border-radius: 4px; }
+
+    /* =====================================================================
+       2. REUSABLE GRADIENTS, BUTTONS & NOTHING OS DOT MATRIX
+       ===================================================================== */
     .hero-heading {
       background: linear-gradient(180deg, #646973 0%, #BBCCD7 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
     }
 
-    /* Primary Pill Button */
     .btn-gradient {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9999px;
+      color: #ffffff;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 12px;
+      padding: 12px 24px;
       background: linear-gradient(123deg, #18011F 7%, #B600A8 37%, #7621B0 72%, #BE4C00 100%);
-      box-shadow: 0px 4px 4px rgba(181, 1, 167, 0.25), inset 4px 4px 12px #7721B1;
-      outline: 2px solid white;
+      box-shadow: 0px 4px 12px rgba(181, 1, 167, 0.3), inset 4px 4px 12px #7721B1;
+      outline: 2px solid #ffffff;
       outline-offset: -3px;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      transition: transform 0.2s ease;
+      cursor: pointer;
     }
-    .btn-gradient:hover {
-      transform: scale(1.04);
-    }
-    .btn-gradient:active {
-      transform: scale(0.96);
-    }
+    .btn-gradient:active { transform: scale(0.95); }
 
-    /* Ghost Live Project Button */
     .btn-ghost {
-      border: 2px solid #D7E2EA;
-      color: #D7E2EA;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 9999px;
+      border: 2px solid var(--slate);
+      color: var(--slate);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 12px;
+      padding: 10px 22px;
       transition: background-color 0.2s ease, transform 0.2s ease;
+      cursor: pointer;
     }
-    .btn-ghost:hover {
+    .btn-ghost:hover, .btn-ghost:active {
       background-color: rgba(215, 226, 234, 0.12);
-      transform: translateY(-2px);
-    }
-    .btn-ghost:active {
-      transform: translateY(0);
     }
 
-    /* Custom Webkit Scrollbar */
-    ::-webkit-scrollbar {
-      width: 7px;
+    /* Nothing OS Dot Matrix Background Layer */
+    .nothing-matrix {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(215, 226, 234, 0.14) 1px, transparent 1px);
+      background-size: 18px 18px;
+      mask-image: radial-gradient(circle at 50% 50%, black 30%, transparent 80%);
+      -webkit-mask-image: radial-gradient(circle at 50% 50%, black 30%, transparent 80%);
+      pointer-events: none;
+      z-index: 1;
     }
-    ::-webkit-scrollbar-track {
+
+    /* Nothing / iPod Style Floating Telemetry Pill */
+    .nothing-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: rgba(20, 20, 22, 0.85);
+      border: 1px solid rgba(215, 226, 234, 0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--slate);
+    }
+    .nothing-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--nothing-red);
+      box-shadow: 0 0 8px var(--nothing-red);
+      animation: blinkDot 1.6s infinite ease-in-out;
+    }
+    @keyframes blinkDot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.25; }
+    }
+
+    /* =====================================================================
+       3. HERO SECTION (100% Fitted for Mobile & Desktop)
+       ===================================================================== */
+    .hero-section {
+      position: relative;
+      width: 100%;
+      height: 100dvh;
+      min-height: 620px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px 18px 24px;
+      overflow: hidden;
+    }
+
+    .top-nav {
+      position: relative;
+      z-index: 30;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: opacity 0.2s;
+    }
+    .nav-link:hover { opacity: 0.7; }
+
+    /* Hero Center Title & Avatar Stack */
+    .hero-center-stage {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-main-title {
+      font-size: clamp(2.35rem, 11.2vw, 13.5vw);
+      white-space: nowrap;
+      text-align: center;
+      width: 100%;
+      z-index: 5;
+      margin-bottom: 120px;
+    }
+
+    /* Centered Magnetic Portrait */
+    #magnetic-container {
+      position: absolute;
+      left: 50%;
+      bottom: 85px;
+      transform: translateX(-50%);
+      width: min(68vw, 290px);
+      z-index: 15;
+      cursor: pointer;
+    }
+
+    #hero-avatar {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.9));
+      transition: transform 0.25s ease-out;
+      will-change: transform;
+      pointer-events: none;
+    }
+
+    .hero-bottom-bar {
+      position: relative;
+      z-index: 30;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      background: linear-gradient(180deg, transparent 0%, rgba(12, 12, 12, 0.92) 35%, #0C0C0C 100%);
+      padding-top: 12px;
+    }
+
+    .hero-bio-copy {
+      font-size: 12px;
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 1.4;
+      color: var(--slate);
+      max-width: 290px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    /* =====================================================================
+       4. MARQUEE SECTION
+       ===================================================================== */
+    .marquee-section {
+      padding: 60px 0 40px;
+      overflow: hidden;
+      position: relative;
+      background: var(--bg-dark);
+    }
+
+    .marquee-track-wrap {
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .marquee-row {
+      display: flex;
+      gap: 12px;
+      width: max-content;
+      will-change: transform;
+    }
+
+    .marquee-card {
+      width: 240px;
+      height: 155px;
+      flex-shrink: 0;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #181818;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6);
+    }
+
+    .marquee-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* =====================================================================
+       5. ABOUT SECTION
+       ===================================================================== */
+    .about-section {
+      min-height: 90vh;
+      padding: 90px 20px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .decor-icon {
+      position: absolute;
+      width: 72px;
+      height: auto;
+      object-fit: contain;
+      pointer-events: none;
+      z-index: 5;
+      filter: drop-shadow(0 12px 24px rgba(255, 255, 255, 0.05));
+    }
+    .decor-tl { top: 4%; left: 3%; }
+    .decor-bl { bottom: 6%; left: 4%; }
+    .decor-tr { top: 4%; right: 3%; }
+    .decor-br { bottom: 6%; right: 4%; }
+
+    .section-giant-title {
+      font-size: clamp(2.8rem, 11vw, 130px);
+      margin-bottom: 36px;
+    }
+
+    #about-text {
+      max-width: 560px;
+      font-size: clamp(1rem, 2.2vw, 1.3rem);
+      font-weight: 500;
+      line-height: 1.6;
+      z-index: 15;
+      margin-bottom: 40px;
+    }
+
+    .about-char {
+      display: inline-block;
+      opacity: 0.2;
+      transition: opacity 0.18s ease;
+    }
+
+    /* =====================================================================
+       6. SERVICES SECTION (White Editorial Sheet)
+       ===================================================================== */
+    .services-section {
+      background: #FFFFFF;
+      color: #0C0C0C;
+      border-radius: 36px 36px 0 0;
+      padding: 64px 20px 96px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .services-container {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .services-heading {
+      color: #0C0C0C;
+      font-size: clamp(2.8rem, 11vw, 130px);
+      font-weight: 900;
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 0.95;
+      margin-bottom: 48px;
+    }
+
+    .services-list {
+      border-top: 1px solid rgba(12, 12, 12, 0.15);
+      border-bottom: 1px solid rgba(12, 12, 12, 0.15);
+    }
+
+    .service-row {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(12, 12, 12, 0.15);
+    }
+    .service-row:last-child { border-bottom: none; }
+
+    .service-num {
+      font-size: clamp(2.8rem, 9vw, 110px);
+      font-weight: 900;
+      line-height: 1;
+      color: #0C0C0C;
+    }
+
+    .service-title {
+      font-size: clamp(1.15rem, 2.4vw, 1.9rem);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 6px;
+    }
+
+    .service-desc {
+      font-size: clamp(0.92rem, 1.5vw, 1.15rem);
+      font-weight: 300;
+      line-height: 1.55;
+      color: rgba(12, 12, 12, 0.7);
+      max-width: 620px;
+    }
+
+    /* =====================================================================
+       7. PROJECTS SECTION (Sticky Stacking Cards + iPod/Nothing Polish)
+       ===================================================================== */
+    .projects-section {
       background: #0C0C0C;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #2b2b2b;
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #444;
+      border-radius: 36px 36px 0 0;
+      margin-top: -36px;
+      position: relative;
+      z-index: 20;
+      padding: 64px 14px 100px;
     }
 
-    /* Sticky Project Card Geometry - FIXED FOR MOBILE */
+    .projects-stack {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
     .project-card-wrapper {
       position: sticky;
-      top: 4rem;
-      min-height: auto;
+      top: 56px;
       will-change: transform;
       transform-origin: center top;
-      transition: transform 0.1s cubic-bezier(0, 0, 0.2, 1);
-      margin-bottom: 2rem;
+      transition: transform 0.12s ease-out;
     }
 
+    .project-inner-card {
+      width: 100%;
+      border-radius: 28px;
+      border: 2px solid var(--slate);
+      background: #0C0C0C;
+      padding: 18px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(215, 226, 234, 0.15);
+    }
+
+    .project-title-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .project-num {
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 900;
+      line-height: 1;
+      color: var(--slate);
+    }
+
+    .project-cat {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(215, 226, 234, 0.6);
+    }
+
+    .project-name {
+      font-size: clamp(1.15rem, 2.5vw, 1.85rem);
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--slate);
+      line-height: 1.15;
+    }
+
+    /* Project Media Grid */
+    .project-media-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .media-col-left {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .media-box {
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: #161616;
+      height: 115px;
+    }
+
+    .media-box-large {
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: #161616;
+      height: 185px;
+    }
+
+    .media-box img, .media-box-large img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    /* Footer */
+    .site-footer {
+      max-width: 780px;
+      margin: 90px auto 0;
+      padding-top: 48px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+
+    /* =====================================================================
+       8. TABLET & DESKTOP UPGRADES
+       ===================================================================== */
     @media (min-width: 768px) {
-      .project-card-wrapper {
-        top: 6.5rem;
-        min-height: calc(85vh - 2rem);
-        margin-bottom: 0;
-      }
+      .hero-section { padding: 32px 40px; }
+      .top-nav { font-size: 18px; }
+      #magnetic-container { width: 420px; bottom: 0; }
+      .hero-bottom-bar { flex-direction: row; justify-content: space-between; align-items: flex-end; background: none; }
+      .hero-bio-copy { font-size: 15px; max-width: 310px; }
+      .marquee-card { width: 380px; height: 240px; }
+      .decor-icon { width: 160px; }
+      .service-row { flex-direction: row; align-items: center; justify-content: space-between; padding: 40px 0; }
+      .project-inner-card { border-radius: 48px; padding: 32px; }
+      .project-media-grid { grid-template-columns: 5fr 7fr; gap: 16px; }
+      .media-col-left { grid-template-columns: 1fr; }
+      .media-box { height: 180px; border-radius: 30px; }
+      .media-box-large { height: 376px; border-radius: 30px; }
     }
   </style>
 </head>
-<body class="bg-[#0C0C0C] text-[#D7E2EA] antialiased select-none selection:bg-[#B600A8]/30">
+<body>
 
   <!-- ========================================================================= -->
   <!-- 1. HERO SECTION                                                           -->
   <!-- ========================================================================= -->
-  <section class="min-h-screen h-screen flex flex-col justify-between overflow-x-clip relative w-full px-5 sm:px-8 md:px-10 pb-7 sm:pb-8 md:pb-10 pt-6 md:pt-8">
-    
-    <!-- Navbar -->
-    <header class="w-full flex justify-between items-center z-30 relative uppercase tracking-wider text-sm sm:text-base md:text-lg lg:text-[1.35rem] font-medium text-[#D7E2EA]">
-      <a href="#about" class="hover:opacity-70 transition-opacity duration-200">About</a>
-      <a href="#services" class="hover:opacity-70 transition-opacity duration-200">Services</a>
-      <a href="#projects" class="hover:opacity-70 transition-opacity duration-200">Projects</a>
-      <a href="https://naimish.dev7.github.io" target="_blank" rel="noopener noreferrer" class="hover:opacity-70 transition-opacity duration-200 flex items-center gap-1.5">
+  <section class="hero-section">
+    <!-- Subtle Nothing OS Dot Matrix Backdrop -->
+    <div class="nothing-matrix"></div>
+
+    <!-- Top Navbar -->
+    <header class="top-nav">
+      <a href="#about" class="nav-link">About</a>
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="https://github.com/naimish.dev7" target="_blank" rel="noopener noreferrer" class="nav-link">
         <span>GitHub</span>
-        <svg class="w-4 h-4 opacity-75" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+        <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+        </svg>
       </a>
     </header>
 
-    <!-- Massive Heading -->
-    <div class="overflow-hidden w-full flex items-center justify-center my-auto z-0">
-      <h1 class="hero-heading font-black uppercase tracking-tight leading-none whitespace-nowrap text-center mt-4 sm:mt-2 md:-mt-6" style="font-size: clamp(3.6rem, 13vw, 15vw);">
+    <!-- Center Stage: Nothing Pill + Giant Heading + Original 3D Face Avatar -->
+    <div class="hero-center-stage">
+      <div class="nothing-pill" style="margin-bottom: 14px; z-index: 20;">
+        <span class="nothing-dot"></span>
+        <span>NAIMISH.DEV // OS v2.6</span>
+      </div>
+
+      <h1 class="hero-heading hero-main-title">
         Hi, i'm naimish
       </h1>
+
+      <div id="magnetic-container">
+        <img
+          id="hero-avatar"
+          src="https://shrug-person-78902957.figma.site/_components/v2/d24c01ad3a56fc65e942a1f501eb73db42d7cf9a/Rectangle_40443.81459862.png"
+          alt="Naimish 3D Avatar"
+        />
+      </div>
     </div>
 
-    <!-- Centered Magnetic Portrait -->
-    <div id="magnetic-container" class="absolute left-1/2 -translate-x-1/2 z-10 w-[260px] sm:w-[350px] md:w-[440px] lg:w-[500px] top-1/2 -translate-y-1/2 sm:top-auto sm:translate-y-0 sm:bottom-0 pointer-events-auto cursor-pointer">
-      <img
-        id="hero-avatar"
-        src="https://shrug-person-78902957.figma.site/_components/v2/d24c01ad3a56fc65e942a1f501eb73db42d7cf9a/Rectangle_40443.81459862.png"
-        alt="Naimish 3D Avatar"
-        class="w-full h-auto object-contain select-none pointer-events-none drop-shadow-[0_20px_35px_rgba(0,0,0,0.85)] will-change-transform"
-        style="transition: transform 0.3s ease-out;"
-      />
-    </div>
-
-    <!-- Bottom Bar -->
-    <div class="w-full flex flex-col sm:flex-row justify-between items-start sm:items-end z-20 relative pt-4 gap-6">
-      <p class="text-[#D7E2EA] font-light uppercase tracking-wide leading-snug max-w-[190px] sm:max-w-[250px] md:max-w-[310px]" style="font-size: clamp(0.75rem, 1.4vw, 1.35rem);">
+    <!-- Bottom Bio & Action Buttons -->
+    <div class="hero-bottom-bar">
+      <p class="hero-bio-copy">
         a 13-year-old web developer crafting full-stack apps and 3d web experiences natively on mobile using Acode, GitHub, and Vercel.
       </p>
 
-      <div class="flex flex-wrap gap-3 sm:gap-4">
-        <a href="#projects" class="btn-gradient inline-flex items-center justify-center rounded-full text-white font-medium uppercase tracking-widest text-xs sm:text-sm px-6 py-3 sm:px-8 sm:py-3.5 select-none">
-          Explore Work
-        </a>
-        <a href="mailto:naimish.dev7@gmail.com" class="btn-ghost inline-flex items-center justify-center rounded-full text-white font-medium uppercase tracking-widest text-xs sm:text-sm px-6 py-3 sm:px-8 sm:py-3.5 select-none">
-          Email Me
-        </a>
+      <div class="hero-cta-group">
+        <a href="#projects" class="btn-gradient">Explore Work</a>
+        <a href="mailto:naimish.dev7@gmail.com" class="btn-ghost">Email Me</a>
       </div>
     </div>
   </section>
@@ -171,156 +628,76 @@
   <!-- ========================================================================= -->
   <!-- 2. MARQUEE SECTION                                                        -->
   <!-- ========================================================================= -->
-  <section id="marquee-section" class="bg-[#0C0C0C] pt-24 sm:pt-32 md:pt-40 pb-12 overflow-hidden relative">
-    <div class="overflow-hidden mb-3.5">
-      <div id="marquee-row-1" class="flex gap-3.5 will-change-transform" style="width: max-content; transform: translateX(0px);">
-        <!-- JS will populate Row 1 -->
-      </div>
+  <section id="marquee-section" class="marquee-section">
+    <div class="marquee-track-wrap">
+      <div id="marquee-row-1" class="marquee-row"></div>
     </div>
-
-    <div class="overflow-hidden">
-      <div id="marquee-row-2" class="flex gap-3.5 will-change-transform" style="width: max-content; transform: translateX(0px);">
-        <!-- JS will populate Row 2 -->
-      </div>
+    <div class="marquee-track-wrap">
+      <div id="marquee-row-2" class="marquee-row"></div>
     </div>
   </section>
 
   <!-- ========================================================================= -->
   <!-- 3. ABOUT SECTION                                                          -->
   <!-- ========================================================================= -->
-  <section id="about" class="min-h-screen px-5 sm:px-8 md:px-10 py-24 relative overflow-hidden flex flex-col justify-center items-center bg-[#0C0C0C]">
-    
-    <!-- 4 Floating 3D Corner Decor Assets -->
-    <img
-      src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/moon_icon.11395d36.png"
-      alt="3D Moon decor"
-      class="absolute top-[4%] left-[2%] sm:left-[3%] md:left-[5%] w-[90px] sm:w-[150px] md:w-[200px] object-contain drop-shadow-[0_15px_30px_rgba(255,255,255,0.06)] pointer-events-none z-10 transition-transform duration-700 hover:scale-110"
-      loading="lazy"
-    />
-    <img
-      src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/p59_1.4659672e.png"
-      alt="3D Sphere decor"
-      class="absolute bottom-[8%] left-[2%] sm:left-[5%] md:left-[9%] w-[85px] sm:w-[130px] md:w-[170px] object-contain drop-shadow-[0_15px_30px_rgba(255,255,255,0.06)] pointer-events-none z-10"
-      loading="lazy"
-    />
-    <img
-      src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/lego_icon-1.703bb594.png"
-      alt="3D Lego decor"
-      class="absolute top-[4%] right-[2%] sm:right-[3%] md:right-[5%] w-[90px] sm:w-[150px] md:w-[200px] object-contain drop-shadow-[0_15px_30px_rgba(255,255,255,0.06)] pointer-events-none z-10"
-      loading="lazy"
-    />
-    <img
-      src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/Group_134-1.2e04f3ce.png"
-      alt="3D Shape decor"
-      class="absolute bottom-[8%] right-[2%] sm:right-[5%] md:right-[9%] w-[100px] sm:w-[150px] md:w-[200px] object-contain drop-shadow-[0_15px_30px_rgba(255,255,255,0.06)] pointer-events-none z-10"
-      loading="lazy"
-    />
+  <section id="about" class="about-section">
+    <img src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/moon_icon.11395d36.png" alt="3D Moon" class="decor-icon decor-tl" loading="lazy" />
+    <img src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/p59_1.4659672e.png" alt="3D Sphere" class="decor-icon decor-bl" loading="lazy" />
+    <img src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/lego_icon-1.703bb594.png" alt="3D Lego" class="decor-icon decor-tr" loading="lazy" />
+    <img src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/Group_134-1.2e04f3ce.png" alt="3D Shape" class="decor-icon decor-br" loading="lazy" />
 
-    <!-- Centered Content -->
-    <div class="flex flex-col items-center justify-center text-center z-20 max-w-4xl mx-auto w-full">
-      <h2 class="hero-heading font-black uppercase leading-none tracking-tight select-none mb-10 sm:mb-14 md:mb-16" style="font-size: clamp(3rem, 11vw, 150px);">
-        About me
-      </h2>
-
-      <!-- Character-revealed dynamic text container -->
-      <p id="about-text" class="text-[#D7E2EA] font-medium text-center leading-relaxed max-w-[590px] px-4" style="font-size: clamp(1rem, 2vw, 1.35rem);">
-        <!-- Populated with character spans by JS -->
-      </p>
-
-      <div class="mt-14 sm:mt-18 md:mt-20">
-        <a href="#projects" class="btn-gradient inline-flex items-center justify-center rounded-full text-white font-medium uppercase tracking-widest text-xs sm:text-sm md:text-base px-8 py-3 sm:px-10 sm:py-3.5 md:px-12 md:py-4 select-none">
-          Explore Work
-        </a>
-      </div>
-    </div>
+    <h2 class="hero-heading section-giant-title">About me</h2>
+    <p id="about-text"></p>
+    <a href="#projects" class="btn-gradient">Explore Work</a>
   </section>
 
   <!-- ========================================================================= -->
   <!-- 4. SERVICES SECTION                                                       -->
   <!-- ========================================================================= -->
-  <section id="services" class="bg-[#FFFFFF] text-[#0C0C0C] rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] px-5 sm:px-8 md:px-12 py-20 sm:py-24 md:py-32 relative z-10">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-[#0C0C0C] font-black uppercase text-center leading-none tracking-tight mb-16 sm:mb-20 md:mb-28 select-none" style="font-size: clamp(3rem, 11vw, 150px);">
-        Services
-      </h2>
+  <section id="services" class="services-section">
+    <div class="services-container">
+      <h2 class="services-heading">Services</h2>
 
-      <div class="flex flex-col divide-y divide-[#0C0C0C]/15 border-t border-b border-[#0C0C0C]/15">
-        
-        <!-- Service 01 -->
-        <div class="flex flex-col md:flex-row md:items-center justify-between py-8 sm:py-10 md:py-12 gap-3 md:gap-12 group">
-          <span class="font-black text-[#0C0C0C] leading-none shrink-0 tracking-tight transition-transform duration-300 group-hover:scale-105" style="font-size: clamp(3rem, 9.5vw, 135px);">
-            01
-          </span>
-          <div class="flex flex-col justify-center max-w-2xl">
-            <h3 class="font-medium uppercase text-[#0C0C0C] tracking-wide mb-2 sm:mb-3" style="font-size: clamp(1.1rem, 2.2vw, 2.1rem);">
-              Full-Stack Web Apps
-            </h3>
-            <p class="font-light leading-relaxed text-[#0C0C0C] opacity-65" style="font-size: clamp(0.9rem, 1.5vw, 1.25rem);">
-              Developing fast, responsive, and production-ready web applications engineered natively in Acode and deployed globally on Vercel.
-            </p>
+      <div class="services-list">
+        <div class="service-row">
+          <span class="service-num">01</span>
+          <div>
+            <h3 class="service-title">Full-Stack Web Apps &amp; PWAs</h3>
+            <p class="service-desc">Developing fast, responsive, and installable Progressive Web Applications engineered natively in Acode and deployed globally on Vercel.</p>
           </div>
         </div>
 
-        <!-- Service 02 -->
-        <div class="flex flex-col md:flex-row md:items-center justify-between py-8 sm:py-10 md:py-12 gap-3 md:gap-12 group">
-          <span class="font-black text-[#0C0C0C] leading-none shrink-0 tracking-tight transition-transform duration-300 group-hover:scale-105" style="font-size: clamp(3rem, 9.5vw, 135px);">
-            02
-          </span>
-          <div class="flex flex-col justify-center max-w-2xl">
-            <h3 class="font-medium uppercase text-[#0C0C0C] tracking-wide mb-2 sm:mb-3" style="font-size: clamp(1.1rem, 2.2vw, 2.1rem);">
-              Security & Vision Systems
-            </h3>
-            <p class="font-light leading-relaxed text-[#0C0C0C] opacity-65" style="font-size: clamp(0.9rem, 1.5vw, 1.25rem);">
-              Building browser-based smart camera monitoring suites, motion detection feeds, and silk-smooth protection dashboards.
-            </p>
+        <div class="service-row">
+          <span class="service-num">02</span>
+          <div>
+            <h3 class="service-title">Client Business &amp; Logistics Portals</h3>
+            <p class="service-desc">Building custom commercial websites with 3D intros, instant fare calculators, and one-tap WhatsApp booking systems.</p>
           </div>
         </div>
 
-        <!-- Service 03 -->
-        <div class="flex flex-col md:flex-row md:items-center justify-between py-8 sm:py-10 md:py-12 gap-3 md:gap-12 group">
-          <span class="font-black text-[#0C0C0C] leading-none shrink-0 tracking-tight transition-transform duration-300 group-hover:scale-105" style="font-size: clamp(3rem, 9.5vw, 135px);">
-            03
-          </span>
-          <div class="flex flex-col justify-center max-w-2xl">
-            <h3 class="font-medium uppercase text-[#0C0C0C] tracking-wide mb-2 sm:mb-3" style="font-size: clamp(1.1rem, 2.2vw, 2.1rem);">
-              Web OS & Interactive UI
-            </h3>
-            <p class="font-light leading-relaxed text-[#0C0C0C] opacity-65" style="font-size: clamp(0.9rem, 1.5vw, 1.25rem);">
-              Crafting desktop-class operating system environments, window managers, and 3D interactive animations inside the browser.
-            </p>
+        <div class="service-row">
+          <span class="service-num">03</span>
+          <div>
+            <h3 class="service-title">Web OS &amp; Interactive 3D UI</h3>
+            <p class="service-desc">Crafting desktop-class operating system environments, AI workspaces, and Three.js interactive animations inside the browser.</p>
           </div>
         </div>
 
-        <!-- Service 04 -->
-        <div class="flex flex-col md:flex-row md:items-center justify-between py-8 sm:py-10 md:py-12 gap-3 md:gap-12 group">
-          <span class="font-black text-[#0C0C0C] leading-none shrink-0 tracking-tight transition-transform duration-300 group-hover:scale-105" style="font-size: clamp(3rem, 9.5vw, 135px);">
-            04
-          </span>
-          <div class="flex flex-col justify-center max-w-2xl">
-            <h3 class="font-medium uppercase text-[#0C0C0C] tracking-wide mb-2 sm:mb-3" style="font-size: clamp(1.1rem, 2.2vw, 2.1rem);">
-              Productivity Tools
-            </h3>
-            <p class="font-light leading-relaxed text-[#0C0C0C] opacity-65" style="font-size: clamp(0.9rem, 1.5vw, 1.25rem);">
-              Creating 365-day habit trackers, real-time analytics dashboards, and smart wake-up alarm scheduling applications.
-            </p>
+        <div class="service-row">
+          <span class="service-num">04</span>
+          <div>
+            <h3 class="service-title">Security &amp; Vision Systems</h3>
+            <p class="service-desc">Building browser-based smart camera monitoring suites, motion detection feeds, and real-time protection dashboards.</p>
           </div>
         </div>
 
-        <!-- Service 05 -->
-        <div class="flex flex-col md:flex-row md:items-center justify-between py-8 sm:py-10 md:py-12 gap-3 md:gap-12 group">
-          <span class="font-black text-[#0C0C0C] leading-none shrink-0 tracking-tight transition-transform duration-300 group-hover:scale-105" style="font-size: clamp(3rem, 9.5vw, 135px);">
-            05
-          </span>
-          <div class="flex flex-col justify-center max-w-2xl">
-            <h3 class="font-medium uppercase text-[#0C0C0C] tracking-wide mb-2 sm:mb-3" style="font-size: clamp(1.1rem, 2.2vw, 2.1rem);">
-              Mobile-First Cloud CI/CD
-            </h3>
-            <p class="font-light leading-relaxed text-[#0C0C0C] opacity-65" style="font-size: clamp(0.9rem, 1.5vw, 1.25rem);">
-              Architecting GitHub repositories and instant cloud deployments directly from a mobile development terminal.
-            </p>
+        <div class="service-row">
+          <span class="service-num">05</span>
+          <div>
+            <h3 class="service-title">Productivity &amp; Habit Tools</h3>
+            <p class="service-desc">Creating 365-day habit trackers, real-time analytics dashboards, and smart wake-up alarm scheduling applications.</p>
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -328,52 +705,37 @@
   <!-- ========================================================================= -->
   <!-- 5. PROJECTS SECTION (STICKY STACKING CARDS)                               -->
   <!-- ========================================================================= -->
-  <section id="projects" class="bg-[#0C0C0C] rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 relative z-20 pt-20 sm:pt-24 md:pt-28 pb-32 px-4 sm:px-8 md:px-12">
-    
-    <h2 class="hero-heading font-black uppercase text-center leading-none tracking-tight select-none mb-14 sm:mb-20" style="font-size: clamp(3rem, 11vw, 150px);">
-      Projects
-    </h2>
+  <section id="projects" class="projects-section">
+    <h2 class="hero-heading section-giant-title" style="text-align: center;">Projects</h2>
 
-    <div id="projects-container" class="max-w-6xl mx-auto flex flex-col gap-10">
-      <!-- 6 Sticky Stack Cards generated via JS -->
-    </div>
+    <div id="projects-container" class="projects-stack"></div>
 
-    <!-- Outro / Footer -->
-    <footer class="mt-36 max-w-4xl mx-auto text-center border-t border-white/10 pt-16 flex flex-col items-center">
-      <div class="flex items-center gap-2 mb-4 text-[#BBCCD7] text-xs sm:text-sm uppercase tracking-widest font-medium">
-        <svg class="w-4 h-4 text-[#B600A8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-        <span>Engineered natively on mobile with Acode &amp; Vercel</span>
+    <footer class="site-footer">
+      <div class="nothing-pill">
+        <span class="nothing-dot"></span>
+        <span>Engineered on Mobile with Acode &amp; Vercel</span>
       </div>
 
-      <p class="text-[#D7E2EA]/60 text-sm sm:text-base font-light max-w-xl mb-8">
-        Crafting modern 3D interactions and mission-critical full-stack applications. Open for collaborations, web experiments, and breakthrough software architecture.
+      <p style="color: rgba(215, 226, 234, 0.65); font-size: 14px; font-weight: 300; max-width: 480px; line-height: 1.6;">
+        Crafting modern 3D interactions, client business PWAs, and full-stack web applications. Open for freelance projects and collaborations.
       </p>
 
-      <a href="https://naimish.dev7.github.io" target="_blank" rel="noopener noreferrer" class="btn-gradient inline-flex items-center justify-center rounded-full text-white font-medium uppercase tracking-widest text-xs sm:text-sm px-9 py-3.5 mb-12 select-none">
+      <a href="https://github.com/naimish.dev7" target="_blank" rel="noopener noreferrer" class="btn-gradient">
         View Full GitHub
       </a>
 
-      <div class="text-[#D7E2EA]/40 text-xs sm:text-sm tracking-widest uppercase flex flex-wrap justify-center gap-6">
-        <span>&copy; <span id="year-span"></span> Naimish</span>
-        <span>&bull;</span>
-        <a href="https://naimish.dev7.github.io" target="_blank" rel="noopener noreferrer" class="hover:text-[#D7E2EA] transition-colors">
-          naimish.dev7.github.io
-        </a>
-        <span>&bull;</span>
-        <span>All Rights Reserved</span>
+      <div style="font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(215, 226, 234, 0.4);">
+        &copy; <span id="year-span"></span> Naimish &bull; created by naimish.dev
       </div>
     </footer>
   </section>
 
   <!-- ========================================================================= -->
-  <!-- VANILLA JAVASCRIPT                                                        -->
+  <!-- 6. VANILLA JAVASCRIPT                                                     -->
   <!-- ========================================================================= -->
   <script>
     document.getElementById('year-span').textContent = new Date().getFullYear();
 
-    /* ----------------------------------------------------------------------- */
-    /* 1. DATA ASSETS                                                          */
-    /* ----------------------------------------------------------------------- */
     const MARQUEE_GIFS = [
       "https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif",
       "https://motionsites.ai/assets/hero-codenest-preview-Cgppc2qV.gif",
@@ -385,22 +747,31 @@
       "https://motionsites.ai/assets/hero-terra-preview-BFjrCr7T.gif",
       "https://motionsites.ai/assets/hero-skyelite-preview-DHaZIgUv.gif",
       "https://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif",
-      "https://motionsites.ai/assets/hero-designpro-preview-D8c5_een.gif",
-      "https://motionsites.ai/assets/hero-stellar-ai-preview-D3HL6bw1.gif",
-      "https://motionsites.ai/assets/hero-xportfolio-preview-D4A8maiC.gif",
       "https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif",
-      "https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif",
-      "https://motionsites.ai/assets/hero-evr-ventures-preview-DZxeVFEX.gif",
-      "https://motionsites.ai/assets/hero-planet-orbit-preview-DWAP8Z1P.gif",
-      "https://motionsites.ai/assets/hero-new-era-preview-CocuDUm9.gif",
-      "https://motionsites.ai/assets/hero-wealth-preview-B70idl_u.gif",
-      "https://motionsites.ai/assets/hero-luminex-preview-CxOP7ce6.gif",
-      "https://motionsites.ai/assets/hero-celestia-preview-0yO3jXO8.gif"
+      "https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif"
     ];
 
     const PROJECTS = [
       {
         num: "01",
+        name: "Naimish Forwarding Agency",
+        category: "Client Logistics PWA • SPN",
+        url: "https://naimishforwadingagency.vercel.app/",
+        col1Img1: "https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif",
+        col1Img2: "https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif",
+        col2Img: "https://motionsites.ai/assets/hero-stellar-ai-v2-preview-DjvxjG3C.gif"
+      },
+      {
+        num: "02",
+        name: "Aegis Security & AI Suite",
+        category: "3D Spatial Workstation",
+        url: "https://aegis.silk.phi.vercel.app/",
+        col1Img1: "https://motionsites.ai/assets/hero-stellar-ai-v2-preview-DjvxjG3C.gif",
+        col1Img2: "https://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif",
+        col2Img: "https://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif"
+      },
+      {
+        num: "03",
         name: "Track365",
         category: "Productivity & Analytics",
         url: "https://track365.vercel.app/",
@@ -409,16 +780,7 @@
         col2Img: "https://motionsites.ai/assets/hero-vex-ventures-preview-BczMFIiw.gif"
       },
       {
-        num: "02",
-        name: "Aegis Security Suite",
-        category: "Cybersecurity UI",
-        url: "https://aegis.silk.phi.vercel.app/",
-        col1Img1: "https://motionsites.ai/assets/hero-stellar-ai-v2-preview-DjvxjG3C.gif",
-        col1Img2: "https://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif",
-        col2Img: "https://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif"
-      },
-      {
-        num: "03",
+        num: "04",
         name: "Guardian Camera Iota",
         category: "Smart Vision System",
         url: "https://guardian-camera-iota.vercel.app/",
@@ -427,222 +789,144 @@
         col2Img: "https://motionsites.ai/assets/hero-skyelite-preview-DHaZIgUv.gif"
       },
       {
-        num: "04",
+        num: "05",
         name: "HyperVibe OS",
         category: "Web Desktop OS",
         url: "https://hypervibe-os.vercel.app/",
         col1Img1: "https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif",
         col1Img2: "https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif",
-        col2Img: "https://motionsites.ai/assets/hero-stellar-ai-v2-preview-DjvxjG3C.gif"
-      },
-      {
-        num: "05",
-        name: "ErlyTree Alarm",
-        category: "Smart Wake Utility",
-        url: "https://erlytree-alarm.vercel.app/",
-        col1Img1: "https://motionsites.ai/assets/hero-terra-preview-BFjrCr7T.gif",
-        col1Img2: "https://motionsites.ai/assets/hero-luminex-preview-CxOP7ce6.gif",
-        col2Img: "https://motionsites.ai/assets/hero-celestia-preview-0yO3jXO8.gif"
+        col2Img: "https://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif"
       },
       {
         num: "06",
-        name: "Guardian Camera Three",
-        category: "V3 Vision Engine",
-        url: "https://guardian-camera-three.vercel.app/",
-        col1Img1: "https://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif",
-        col1Img2: "https://motionsites.ai/assets/hero-skyelite-preview-DHaZIgUv.gif",
-        col2Img: "https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif"
+        name: "ErlyTree Alarm",
+        category: "Smart Wake Utility PWA",
+        url: "https://erlytree-alarm.vercel.app/",
+        col1Img1: "https://motionsites.ai/assets/hero-terra-preview-BFjrCr7T.gif",
+        col1Img2: "https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif",
+        col2Img: "https://motionsites.ai/assets/hero-skyelite-preview-DHaZIgUv.gif"
       }
     ];
 
-    /* ----------------------------------------------------------------------- */
-    /* 2. RENDER MARQUEE ROWS                                                  */
-    /* ----------------------------------------------------------------------- */
+    // Populate Marquee Rows
     const row1 = document.getElementById('marquee-row-1');
     const row2 = document.getElementById('marquee-row-2');
+    const r1List = [...MARQUEE_GIFS, ...MARQUEE_GIFS];
+    const r2List = [...MARQUEE_GIFS.slice().reverse(), ...MARQUEE_GIFS.slice().reverse()];
 
-    const row1Imgs = [...MARQUEE_GIFS.slice(0, 11), ...MARQUEE_GIFS.slice(0, 11), ...MARQUEE_GIFS.slice(0, 11)];
-    const row2Imgs = [...MARQUEE_GIFS.slice(11), ...MARQUEE_GIFS.slice(11), ...MARQUEE_GIFS.slice(11)];
-
-    function createMarqueeItem(src) {
-      const div = document.createElement('div');
-      div.className = "w-[280px] sm:w-[320px] md:w-[420px] h-[180px] sm:h-[200px] md:h-[270px] shrink-0 rounded-2xl overflow-hidden bg-[#181818] border border-white/5 shadow-xl transition-transform duration-300 hover:scale-[1.02]";
-      div.innerHTML = `<img src="${src}" alt="Project preview" class="w-full h-full object-cover select-none" loading="lazy" />`;
-      return div;
+    function buildMarqueeCard(src) {
+      const d = document.createElement('div');
+      d.className = 'marquee-card';
+      d.innerHTML = `<img src="${src}" alt="Preview" loading="lazy" />`;
+      return d;
     }
+    r1List.forEach(s => row1.appendChild(buildMarqueeCard(s)));
+    r2List.forEach(s => row2.appendChild(buildMarqueeCard(s)));
 
-    row1Imgs.forEach(src => row1.appendChild(createMarqueeItem(src)));
-    row2Imgs.forEach(src => row2.appendChild(createMarqueeItem(src)));
+    // Populate About Character Reveal
+    const bioString = "I am Naimish, a 13-year-old full-stack developer building production client PWAs, real-time camera security systems, and interactive 3D browser operating systems entirely from my smartphone using Acode, GitHub, and Vercel. Let's build something incredible together!";
+    const aboutTextEl = document.getElementById('about-text');
 
-    /* ----------------------------------------------------------------------- */
-    /* 3. RENDER ABOUT PARAGRAPH CHARACTERS                                    */
-    /* ----------------------------------------------------------------------- */
-    const bioString = "I am Naimish, a 13-year-old full-stack developer building production web applications, real-time camera security systems, and interactive browser operating systems entirely from my smartphone using Acode, GitHub, and Vercel. Let's build something incredible together!";
-    const aboutTextContainer = document.getElementById('about-text');
-
-    bioString.split("").forEach((char) => {
-      const span = document.createElement('span');
-      span.textContent = char;
-      span.className = 'about-char inline-block';
-      span.style.opacity = '0.2';
-      span.style.transition = 'opacity 0.2s ease';
-      if (char === ' ') span.innerHTML = '&nbsp;';
-      aboutTextContainer.appendChild(span);
+    bioString.split('').forEach(ch => {
+      const s = document.createElement('span');
+      s.className = 'about-char';
+      s.innerHTML = ch === ' ' ? '&nbsp;' : ch;
+      aboutTextEl.appendChild(s);
     });
-
     const aboutChars = document.querySelectorAll('.about-char');
 
-    /* ----------------------------------------------------------------------- */
-    /* 4. RENDER PROJECT STACKING CARDS                                        */
-    /* ----------------------------------------------------------------------- */
+    // Populate Sticky Project Cards
     const projectsContainer = document.getElementById('projects-container');
-
     PROJECTS.forEach((proj, idx) => {
-      const cardWrap = document.createElement('div');
-      cardWrap.className = 'project-card-wrapper';
-      cardWrap.style.top = `calc(5rem + ${idx * 20}px)`;
+      const wrap = document.createElement('div');
+      wrap.className = 'project-card-wrapper';
+      wrap.style.top = `${52 + idx * 14}px`;
 
-      cardWrap.innerHTML = `
-        <div class="project-inner-card w-full rounded-[36px] sm:rounded-[48px] md:rounded-[60px] border-2 border-[#D7E2EA] bg-[#0C0C0C] p-4 sm:p-6 md:p-8 flex flex-col justify-between shadow-[0_25px_60px_rgba(0,0,0,0.85)] relative overflow-hidden">
-          
-          <!-- Radial ambient glow -->
-          <div class="absolute top-0 right-0 w-80 h-80 bg-[#BBCCD7]/5 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20"></div>
-
-          <!-- Top Meta Row -->
-          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 sm:pb-6 border-b border-[#D7E2EA]/15 z-10 relative">
-            <div class="flex items-center gap-4 sm:gap-6">
-              <span class="font-black text-[#D7E2EA] leading-none" style="font-size: clamp(2.3rem, 5.5vw, 4.8rem);">
-                ${proj.num}
-              </span>
-              <div class="flex flex-col">
-                <span class="text-xs sm:text-sm uppercase tracking-wider text-[#D7E2EA]/60 font-light">
-                  ${proj.category}
-                </span>
-                <h3 class="text-lg sm:text-2xl md:text-3xl uppercase font-medium text-[#D7E2EA] tracking-wide">
-                  ${proj.name}
-                </h3>
+      wrap.innerHTML = `
+        <div class="project-inner-card">
+          <div class="project-header">
+            <div class="project-title-group">
+              <span class="project-num">${proj.num}</span>
+              <div>
+                <div class="project-cat">${proj.category}</div>
+                <h3 class="project-name">${proj.name}</h3>
               </div>
             </div>
 
-            <a href="${proj.url}" target="_blank" rel="noopener noreferrer" class="btn-ghost inline-flex items-center gap-2 rounded-full px-6 py-2.5 sm:px-9 sm:py-3.5 text-xs sm:text-base uppercase tracking-widest font-medium select-none group">
+            <a href="${proj.url}" target="_blank" rel="noopener noreferrer" class="btn-ghost">
               <span>Live Project</span>
-              <svg class="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
             </a>
           </div>
 
-          <!-- Bottom Responsive 2-Column Grid -->
-          <div class="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4 mt-4 sm:mt-6 z-10 relative">
-            <div class="md:col-span-5 flex flex-col gap-3 sm:gap-4">
-              <div class="rounded-[24px] sm:rounded-[36px] md:rounded-[45px] overflow-hidden border border-white/10 bg-[#161616]" style="height: clamp(110px, 15vw, 210px);">
-                <img src="${proj.col1Img1}" alt="${proj.name} preview" class="w-full h-full object-cover select-none transition-transform duration-500 hover:scale-105" loading="lazy" />
-              </div>
-              <div class="rounded-[24px] sm:rounded-[36px] md:rounded-[45px] overflow-hidden border border-white/10 bg-[#161616]" style="height: clamp(140px, 20vw, 300px);">
-                <img src="${proj.col1Img2}" alt="${proj.name} preview" class="w-full h-full object-cover select-none transition-transform duration-500 hover:scale-105" loading="lazy" />
-              </div>
+          <div class="project-media-grid">
+            <div class="media-col-left">
+              <div class="media-box"><img src="${proj.col1Img1}" alt="${proj.name}" loading="lazy" /></div>
+              <div class="media-box"><img src="${proj.col1Img2}" alt="${proj.name}" loading="lazy" /></div>
             </div>
-
-            <div class="md:col-span-7">
-              <div class="w-full h-[240px] sm:h-[350px] md:h-full rounded-[24px] sm:rounded-[36px] md:rounded-[45px] overflow-hidden border border-white/10 bg-[#161616]">
-                <img src="${proj.col2Img}" alt="${proj.name} preview full" class="w-full h-full object-cover select-none transition-transform duration-500 hover:scale-105" loading="lazy" />
-              </div>
+            <div class="media-box-large">
+              <img src="${proj.col2Img}" alt="${proj.name}" loading="lazy" />
             </div>
           </div>
-
         </div>
       `;
-      projectsContainer.appendChild(cardWrap);
+      projectsContainer.appendChild(wrap);
     });
 
-    /* ----------------------------------------------------------------------- */
-    /* 5. MAGNETIC AVATAR TRACKING (MOUSE & TOUCH)                             */
-    /* ----------------------------------------------------------------------- */
-    const magnetContainer = document.getElementById('magnetic-container');
-    const heroAvatar = document.getElementById('hero-avatar');
+    // Magnetic Avatar Touch & Mouse Physics
+    const magnetBox = document.getElementById('magnetic-container');
+    const avatarImg = document.getElementById('hero-avatar');
 
-    function onPointerMove(e) {
-      if (!magnetContainer || !heroAvatar) return;
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-
-      const rect = magnetContainer.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-
-      const dist = Math.hypot(clientX - centerX, clientY - centerY);
-      const maxDistance = Math.max(rect.width, rect.height) / 2 + 150;
-
-      if (dist < maxDistance) {
-        const offsetX = (clientX - centerX) / 3.5;
-        const offsetY = (clientY - centerY) / 3.5;
-        heroAvatar.style.transform = `translate3d(${offsetX}px, ${offsetY}px, 0)`;
+    function handleMove(e) {
+      const x = e.touches ? e.touches[0].clientX : e.clientX;
+      const y = e.touches ? e.touches[0].clientY : e.clientY;
+      const rect = magnetBox.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      if (Math.hypot(x - cx, y - cy) < 260) {
+        avatarImg.style.transform = `translate3d(${(x - cx) / 4}px, ${(y - cy) / 4}px, 0)`;
       } else {
-        heroAvatar.style.transform = `translate3d(0px, 0px, 0)`;
+        avatarImg.style.transform = 'translate3d(0,0,0)';
       }
     }
+    window.addEventListener('mousemove', handleMove, { passive: true });
+    window.addEventListener('touchmove', handleMove, { passive: true });
+    window.addEventListener('touchend', () => avatarImg.style.transform = 'translate3d(0,0,0)');
 
-    function onPointerLeave() {
-      if (heroAvatar) {
-        heroAvatar.style.transform = `translate3d(0px, 0px, 0)`;
-      }
-    }
-
-    window.addEventListener('mousemove', onPointerMove, { passive: true });
-    window.addEventListener('touchmove', onPointerMove, { passive: true });
-    window.addEventListener('touchend', onPointerLeave);
-    window.addEventListener('mouseleave', onPointerLeave);
-
-    /* ----------------------------------------------------------------------- */
-    /* 6. SCROLL LISTENERS (MARQUEE, ABOUT TEXT REVEAL, PROJECT CARDS SCALE)   */
-    /* ----------------------------------------------------------------------- */
-    const marqueeSection = document.getElementById('marquee-section');
-    const projectWrappers = document.querySelectorAll('.project-card-wrapper');
+    // Scroll Animations (Marquee + Character Reveal + Card Depth Scale)
+    const marqueeSec = document.getElementById('marquee-section');
+    const cardWrappers = document.querySelectorAll('.project-card-wrapper');
     let ticking = false;
 
-    function handleScrollUpdates() {
-      const scrollY = window.scrollY;
-      const viewportHeight = window.innerHeight;
+    function updateOnScroll() {
+      const sy = window.scrollY;
+      const vh = window.innerHeight;
 
-      // 6.1 Marquee Horizontal Scroll
-      if (marqueeSection) {
-        const marqueeRect = marqueeSection.getBoundingClientRect();
-        const sectionTop = scrollY + marqueeRect.top;
-        const offset = (scrollY - sectionTop + viewportHeight) * 0.35;
-        row1.style.transform = `translateX(${offset - 200}px)`;
-        row2.style.transform = `translateX(${-(offset - 200)}px)`;
+      if (marqueeSec) {
+        const rect = marqueeSec.getBoundingClientRect();
+        const shift = (vh - rect.top) * 0.25;
+        row1.style.transform = `translateX(${shift - 180}px)`;
+        row2.style.transform = `translateX(${-shift + 40}px)`;
       }
 
-      // 6.2 About Text Character Reveal
-      if (aboutTextContainer) {
-        const rect = aboutTextContainer.getBoundingClientRect();
-        const start = viewportHeight * 0.85;
-        const end = viewportHeight * 0.25;
-        const progress = Math.min(Math.max((start - rect.top) / (start - end), 0), 1);
-
-        const totalChars = aboutChars.length;
-        const revealedCount = Math.floor(progress * totalChars);
-
-        aboutChars.forEach((charSpan, index) => {
-          if (index <= revealedCount) {
-            charSpan.style.opacity = '1';
-          } else {
-            charSpan.style.opacity = '0.2';
-          }
-        });
+      if (aboutTextEl) {
+        const rect = aboutTextEl.getBoundingClientRect();
+        const prog = Math.min(Math.max((vh * 0.85 - rect.top) / (vh * 0.6), 0), 1);
+        const count = Math.floor(prog * aboutChars.length);
+        aboutChars.forEach((c, i) => c.style.opacity = i <= count ? '1' : '0.2');
       }
 
-      // 6.3 Project Stacking Cards Scaling
-      const totalCards = projectWrappers.length;
-      projectWrappers.forEach((wrap, i) => {
-        const rect = wrap.getBoundingClientRect();
-        const targetScale = 1 - (totalCards - 1 - i) * 0.025;
-        
-        // When card is pinned at the top, slightly scale down as scroll continues
-        if (rect.top <= (80 + i * 20)) {
-          const depthProgress = Math.min(Math.max((80 - rect.top) / 400, 0), 1);
-          const currentScale = 1 - ((1 - targetScale) * depthProgress);
-          wrap.style.transform = `scale(${currentScale})`;
+      const total = cardWrappers.length;
+      cardWrappers.forEach((w, i) => {
+        const r = w.getBoundingClientRect();
+        const minScale = 1 - (total - 1 - i) * 0.025;
+        if (r.top <= 75 + i * 14) {
+          const p = Math.min(Math.max((90 - r.top) / 350, 0), 1);
+          w.style.transform = `scale(${1 - (1 - minScale) * p})`;
         } else {
-          wrap.style.transform = `scale(1)`;
+          w.style.transform = 'scale(1)';
         }
       });
 
@@ -651,13 +935,12 @@
 
     window.addEventListener('scroll', () => {
       if (!ticking) {
-        window.requestAnimationFrame(handleScrollUpdates);
+        window.requestAnimationFrame(updateOnScroll);
         ticking = true;
       }
     }, { passive: true });
 
-    // Initial calculation on load
-    handleScrollUpdates();
+    updateOnScroll();
   </script>
 </body>
 </html>
